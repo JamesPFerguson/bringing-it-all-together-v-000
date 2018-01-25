@@ -103,11 +103,11 @@ class Dog
 
     DB[:conn].execute(sql, name, breed).map{|row| self.new_from_db(row)}.first
   end
-  
+
   def self.find_or_create_by(name:, breed:)
 
-    if self.find_by_name(name).breed == breed
-      self.find_by_name(name)
+    if self.find_by_name_and_breed(name, breed)
+      self.find_by_name_and_breed(name, breed)
     else
       self.create(name: name, breed: breed)
     end
